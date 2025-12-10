@@ -13,8 +13,6 @@ DL=19 #sensore sinistro
 
 comandoPrecedente = 'stop'
 
-
-
 ab = AlphaBot()
 ab.stop()  # OBBLIGATORIO
 
@@ -49,7 +47,6 @@ while True:
     if not message_bin:
         break
 
-
     comando = message_bin.decode().strip()
     print(f"comandoPrecedente = {comandoPrecedente}")
     print(f"messaggio ricevuto da client = {comando}")
@@ -70,8 +67,6 @@ while True:
         vicinanza = funzione_sensori()
         comando = message_bin.decode().strip()
         
-
-    
 
     if comando == comandoPrecedente:
         continue
@@ -94,6 +89,7 @@ while True:
 
         cur.execute(f"SELECT movimento, tempi FROM Comandi WHERE nome_comando LIKE '{comando}'")
         righe = cur.fetchall()
+        con.close()
 
         print(f"righe: {righe}")
 
@@ -122,6 +118,5 @@ while True:
 
 
         ab.stop()
-        con.close()
 
 s.close()
